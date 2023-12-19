@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://cmdpcay6l3753"]
+
+[ext_resource type="Script" path="res://snake.gd" id="1_wewta"]
+[ext_resource type="Texture2D" uid="uid://c3x4adupv0wip" path="res://snake.jpg" id="2_yl8iy"]
+[ext_resource type="Script" path="res://Node2D.gd" id="3_gbqhn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8a7xq"]
+rough = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqcrc"]
+size = Vector2(116, 137)
+
+[sub_resource type="Gradient" id="Gradient_8afdn"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i8hkm"]
+gradient = SubResource("Gradient_8afdn")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_esagq"]
+bounce = 0.4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imjb0"]
+size = Vector2(2810, 253)
+
+[sub_resource type="Gradient" id="Gradient_vqr1x"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lg7pl"]
+gradient = SubResource("Gradient_vqr1x")
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-3, -4)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(193, 38)
+physics_material_override = SubResource("PhysicsMaterial_8a7xq")
+lock_rotation = true
+script = ExtResource("1_wewta")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-19, -28)
+shape = SubResource("RectangleShape2D_oqcrc")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D/CollisionShape2D"]
+position = Vector2(2.00003, 1.99998)
+scale = Vector2(0.228333, 0.225)
+texture = ExtResource("2_yl8iy")
+
+[node name="Camera2D" type="Camera2D" parent="RigidBody2D"]
+position = Vector2(-22, -147)
+
+[node name="Node2D" type="Node2D" parent="RigidBody2D"]
+script = ExtResource("3_gbqhn")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D/Node2D"]
+position = Vector2(-7, 0.25)
+scale = Vector2(0.945312, 0.5)
+texture = SubResource("GradientTexture1D_i8hkm")
+
+[node name="RigidBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(325, 173)
+physics_material_override = SubResource("PhysicsMaterial_esagq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+position = Vector2(-112, 190.5)
+shape = SubResource("RectangleShape2D_imjb0")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D2/CollisionShape2D"]
+position = Vector2(51, -2.50001)
+scale = Vector2(38.5938, 4.0625)
+texture = SubResource("GradientTexture2D_lg7pl")
